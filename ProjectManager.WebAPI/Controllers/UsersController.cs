@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace ProjectManager.WebAPI.Controllers
 {
-    public class ValuesController : ApiController
+    public class UsersController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
