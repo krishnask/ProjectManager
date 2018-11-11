@@ -1,30 +1,58 @@
 ﻿using System;
 using ProjectManager.Persistence;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjectManager.Business
 {
     public class UserRepository
     {
-        bool AddUser(User user)
+        ProjectManagerContext _context;
+        public UserRepository()
         {
-            return false;
+            _context = ProjectManagerContext.CreateContext();
+
         }
-        bool GetUser(int empId)
+        public bool AddUser(User user)
         {
-            return false;
+            _context.users.Add(user);
+            _context.SaveChanges();
+            return true;
         }
-        bool DeleteUser(int empId)
+        public User GetUser(int empId) // TODO - is this required?
         {
-            return false;
+            var entity = _context.users.Find(empId);
+            return entity;
         }
-        List<User> GetAllUsers()
+        public bool DeleteUser(int empId)
         {
-            return new List<User>();
+            var entity = _context.users.Find(empId);
+            if (entity == null)
+            {
+                return false;
+            }
+            _context.users.Remove(entity);
+            _context.SaveChanges();
+
+            return true;
         }
-        bool UpdateUser(int empId, User user)
+        public List<User> GetAllUsers()
         {
-            return false;
+            var data = _context.users.ToList<User>();
+            return data;
+        }
+        public bool UpdateUser(int empId, User user)
+        {
+            var entity = _context.users.Find(empId);
+            if (entity == null)
+            {
+                return false;
+            }
+
+            _context.Entry(entity).CurrentValues.SetValues(user);
+            _context.SaveChanges();
+
+            return true;
         }
     }
 }
