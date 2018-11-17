@@ -1,4 +1,17 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<br>
+<h1 class = "ml-2">Project Manager</h1>
+
+<nav class="navbar navbar-light bg-light navbar-expand-lg d-flex">
+    <ul class="navbar-nav mr-auto d-flex">
+  <li><a class = "not-current p-2" routerLink="/project" [routerLinkActive]="'is-active'">Add Project</a></li>
+  <li><a class = "not-current p-2" routerLink="/addtask" [routerLinkActive]="'is-active'">Add Task</a></li>
+  <li><a class = "not-current p-2" routerLink="/user" [routerLinkActive]="'is-active'" >Add User</a></li>
+  <li><a class = "not-current p-2" routerLink="/viewtask"  [routerLinkActive]="'is-active'" >View Task</a></li>
+    </ul>
+  </nav>
+
+<router-outlet></router-outlet>
+<!--The content below is only a placeholder and can be replaced.
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -17,4 +30,4 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
-
+-->

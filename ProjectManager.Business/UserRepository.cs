@@ -2,6 +2,7 @@
 using ProjectManager.Persistence;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity.Infrastructure;
 
 namespace ProjectManager.Business
 {
@@ -15,9 +16,17 @@ namespace ProjectManager.Business
         }
         public bool AddUser(User user)
         {
-            _context.users.Add(user);
-            _context.SaveChanges();
-            return true;
+            try
+            {
+                _context.users.Add(user);
+                _context.SaveChanges();
+                return true;
+            }
+            catch(DbUpdateException ex)
+            {
+                throw new Exception("User Already Exist.");
+            }
+            
         }
         public User GetUser(int empId) // TODO - is this required?
         {

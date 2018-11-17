@@ -13,11 +13,18 @@ namespace ProjectManager.Persistence
         {
             if (_context == null)
                 _context = new ProjectManagerContext();
+            
             return _context;
         }
         public ProjectManagerContext()
-            :base("name=ProjectManagerContext")
+            :base("name=PMContext")
         { }
         public virtual DbSet<User> users { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<ProjectManagerContext>(null);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

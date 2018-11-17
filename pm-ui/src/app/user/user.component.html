@@ -1,0 +1,62 @@
+<p>
+  user works!
+</p>
+<div class="container">
+    <!--<div *ngIf="submitErr" class ="alert alert-danger">
+        {{submitErr}}
+    </div>-->
+  <form class ="form-horizontal flex">
+    <div class="form-group row">
+      <label class ="control-label col-sm-2" for="fname">First Name:</label>
+      <input type="text" class="form-control col-sm-10" id="fname" required  value ="{{user.FirstName}}" >
+    </div>
+
+    <div class="form-group row">
+      <label class ="control-label col-sm-2" for="lname">Last Name:</label>
+      <input type="text" class="form-control col-sm-10" id="lname" required value="{{user.LastName}}" >
+    </div>
+
+    <div class="form-group row">
+      <label class ="control-label col-sm-2"  for="eid">Employee ID:</label>
+      <input type="text" class="form-control col-sm-5" id="eid" required value="{{user.EmployeeId}}" >
+    </div>
+    <div class="form-group float-sm-right">
+      <button type="submit" class="btn btn-submit m-2" (click)='AddUpdate()' >Add</button>
+      <button type="reset" class="btn btn-warning  m-2">Reset</button>
+    </div>
+  </form>
+</div>
+<br><br>
+<div>
+  <hr>
+</div>
+<!--
+<div class="container">
+    <form class ="form-horizontal">
+        <div class="row">
+       <input type="text" class="form-control col-sm-4" id="lsearch" placeholder="Search..." >
+       <div>Sort:</div>
+       <button class="btn btn-outline-info col-sm-3">First Name</button>
+       <button class="btn btn-outline-info col-sm-3">Last Name</button>
+       <button class="btn btn-outline-info col-sm-1">Id</button>
+       
+       </div>
+       
+       <hr style="border-top:dotted 1px; color:black">
+       <div class="row">
+          <label class ="greylabel col-sm-8" id="lfname">{{user.FirstName}}</label>
+          <div class="btn btn-info align-self-end ml-auto col-sm-2" >Edit</div>
+          </div>
+          <br>
+          <div class="row">  
+          <label class ="col-sm-8 greylabel" id="lnname">{{user.LastName}}</label>
+          <div class="btn btn-warning align-self-end ml-auto col-sm-2" >Delete</div>
+        </div>
+        <br>
+        <div class="row">
+          <label class ="col-sm-8 greylabel" id="lid">{{user.EmployeeId}}</label>
+        </div>
+        
+      </form>
+</div>
+-->

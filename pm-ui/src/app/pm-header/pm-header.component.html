@@ -1,0 +1,28 @@
+<h1>
+  <img src="../../assets/PM.jpg" alt="Logo" width="50px" height="50px"> Project Manager
+</h1>
+<nav class="navbar navbar-light bg-light navbar-expand-lg d-flex">
+  <ul class="navbar-nav mr-auto d-flex">
+    <li class="nav-item p-2">
+      <a href="#">Add Project</a>
+    </li>
+    <li class="nav-item p-2">
+      <a href="#">Add Task</a>
+    </li>
+    <li class="nav-item p-2">
+      <a href="#">Add User</a>
+    </li>
+    <li class="nav-item p-2">
+      <a href="#">View Task</a>
+    </li>
+  </ul>
+  <ul class="nav">
+      <li><a class = "color-me" routerLink="/add" [routerLinkActive]="'is-active'">Add Task</a></li>
+      <li><a class = "color-me" routerLink="/edit" [routerLinkActive]="'is-active'">Edit Task</a></li>
+      <li><a class = "color-me" routerLink="/view"  routerLink="/"  [routerLinkActive]="'is-active'" [routerLinkActiveOptions]="{exact:true}">View Task</a></li>
+    </ul>
+</nav>
+
+<button type="button" class="btn btn-danger">Danger</button>
+
+
