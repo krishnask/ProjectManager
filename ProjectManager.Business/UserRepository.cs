@@ -22,7 +22,7 @@ namespace ProjectManager.Business
                 _context.SaveChanges();
                 return true;
             }
-            catch(DbUpdateException ex)
+            catch(DbUpdateException)
             {
                 throw new Exception("User Already Exist.");
             }

@@ -14,20 +14,21 @@ export class UserService {
   constructor(private http:HttpClient) { }
   taskUrl: string = 'assets/tasks.json';
 
-  public getTasks()
+  public getUsers()
   {
-    console.log("Get Tasks");
+    console.log("Get Users");
     return this.http.get<User[]>(environment.userUrl)
     .pipe(map(data => 
       {
+        console.log(data);
         return data;
       }
      
       ), catchError(this.handleError));
   }
-  public getTask(EmployeeId:number):Observable<User>
+  public getUser(EmployeeId:number):Observable<User>
   {
-    return this.getTasks().pipe(
+    return this.getUsers().pipe(
       map(tasks => tasks.find(user => user.EmployeeId === EmployeeId))
     );
   }
