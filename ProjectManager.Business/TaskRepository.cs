@@ -7,13 +7,17 @@ using System.Data.Entity.Infrastructure;
 
 namespace ProjectManager.Business
 {
-    class TaskRepository
+    public class TaskRepository
     {
         ProjectManagerContext _context;
         public TaskRepository()
         {
             _context = ProjectManagerContext.CreateContext();
 
+        }
+        public TaskRepository(ProjectManagerContext context)
+        {
+            _context = context;
         }
         public bool AddTask(Task task)
         {

@@ -14,6 +14,10 @@ namespace ProjectManager.Business
             _context = ProjectManagerContext.CreateContext();
 
         }
+        public UserRepository(ProjectManagerContext context)
+        {
+            _context = context;
+        }
         public bool AddUser(User user)
         {
             try

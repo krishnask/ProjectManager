@@ -22,6 +22,6 @@ namespace ProjectManager.Persistence
 
         public int Priority { get; set; }
 
-        public int Manager { get; set; }
+        public int ManagerId { get; set; }
     }
 }

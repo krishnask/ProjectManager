@@ -8,7 +8,6 @@ using System.Data.Entity.Infrastructure;
 
 namespace ProjectManager.Business
 {
-    
     public class ProjectRepository
     {
         ProjectManagerContext _context;
@@ -16,7 +15,11 @@ namespace ProjectManager.Business
         {
             _context = ProjectManagerContext.CreateContext();
         }
-        
+        public ProjectRepository(ProjectManagerContext context)
+        {
+            _context = context;
+        }
+
         public bool AddProject( Project project)
         {
             try
