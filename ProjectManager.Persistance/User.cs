@@ -7,16 +7,20 @@ using System.Data;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+// TODO - do not have employee id as the key
 namespace ProjectManager.Persistence
 {
     [Table("UserDetails")]
     public class User
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        public int UserId { get; set; }
         public int EmployeeId { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+        
     }
+    
 }

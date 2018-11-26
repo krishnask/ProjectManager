@@ -7,8 +7,8 @@
     <ProjectGuid>{5B283D5D-1256-43FF-8EFB-5DB56850FE69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjectManager.Persistance</RootNamespace>
-    <AssemblyName>ProjectManager.Persistance</AssemblyName>
+    <RootNamespace>ProjectManager.Persistence</RootNamespace>
+    <AssemblyName>ProjectManager.Persistence</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Project.cs" />
     <Compile Include="ProjectManagerContext.cs" />
+    <Compile Include="Task.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

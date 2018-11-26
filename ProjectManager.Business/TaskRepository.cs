@@ -1,65 +1,66 @@
 ﻿using System;
-using ProjectManager.Persistence;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectManager.Persistence;
 using System.Data.Entity.Infrastructure;
+
 
 namespace ProjectManager.Business
 {
-    public class UserRepository
+    class TaskRepository
     {
         ProjectManagerContext _context;
-        public UserRepository()
+        public TaskRepository()
         {
             _context = ProjectManagerContext.CreateContext();
 
         }
-        public bool AddUser(User user)
+        public bool AddTask(Task task)
         {
             try
             {
-                _context.users.Add(user);
+                _context.tasks.Add(task);
                 _context.SaveChanges();
                 return true;
             }
-            catch(DbUpdateException)
+            catch (DbUpdateException)
             // TODO - log the exception
             {
-                throw new Exception("User Already Exist.");
+                throw new Exception("Task Already Exist.");
             }
-            
+
         }
-        public User GetUser(int empId) // TODO - is this required?
+        public User GetTask(int taskId) // TODO - is this required?
         {
-            var entity = _context.users.Find(empId);
+            var entity = _context.users.Find(taskId);
             return entity;
         }
-        public bool DeleteUser(int empId)
+        public bool DeleteTask(int taskId)
         {
-            var entity = _context.users.Find(empId);
+            var entity = _context.tasks.Find(taskId);
             if (entity == null)
             {
                 return false;
             }
-            _context.users.Remove(entity);
+            _context.tasks.Remove(entity);
             _context.SaveChanges();
 
             return true;
         }
-        public List<User> GetAllUsers()
+        public List<Task> GetAllTasks()
         {
-            var data = _context.users.ToList<User>();
+            var data = _context.tasks.ToList<Task>();
             return data;
         }
-        public bool UpdateUser(int empId, User user)
+        public bool UpdateTask(int taskId, Task task)
         {
-            var entity = _context.users.Find(empId);
+            var entity = _context.tasks.Find(taskId);
             if (entity == null)
             {
                 return false;
             }
 
-            _context.Entry(entity).CurrentValues.SetValues(user);
+            _context.Entry(entity).CurrentValues.SetValues(task);
             _context.SaveChanges();
 
             return true;

@@ -15,14 +15,14 @@ export class UserComponent implements OnInit {
   public user: User;
   public users:User[];
   public submitErr:string;
+  public buttoncaption:string
+  public sortby:string;
 
   ngOnInit() {
- 
+    this.buttoncaption = "Add";
     this.userService.getUsers().subscribe(userlist => {
-      console.log("subscribe");
       this.users = userlist;
-      console.log("User list");
-      console.log(this.users);
+       console.log(this.users);
       //this.users[0]=this.user;
      })
 
@@ -33,20 +33,47 @@ export class UserComponent implements OnInit {
     this.user.EmployeeId = 263775;
     console.log("Read from database");
     console.log(this.users);
-
   }
-  
+SortById()
+{
+  this.sortby = "EmployeeId";
+}
+SortByFirstName()
+{
+  this.sortby = "FirstName";
+}
+SortByLastName()
+{
+  this.sortby = "LastName";
+}
+  AddUpdateUser() {
+    console.log("Add");
+    if(this.buttoncaption == "Add")
+    {
+      this.userService.Post(this.user).subscribe(response => console.log(response), err => {
+        this.submitErr =err.ExceptionMessage;
+        console.log(this.submitErr);
+      });
+    }
+    else{
+      this.userService.Put(this.user).subscribe(response => console.log(response), err => {
+        this.submitErr =err.ExceptionMessage;
+        console.log(this.submitErr);
+      });
+    }
+   
+    //this.Cancel(); - clear the fields - TODO
+  }
+  Reset()
+  {
+    this.buttoncaption = "Add";
+  }
 
-  AddUpdate() {
-    console.log("Addupdate");
-    this.userService.Post(this.user).subscribe(response => console.log(response), err => {
-
-      this.submitErr =err.Message;
-      console.log(this.submitErr);
+  EditUser(EmployeeId:number) {
+    console.log("Edit");
+    this.user = this.users.filter(u => u.EmployeeId == EmployeeId)[0];
+    this.buttoncaption = "Update";
     }
     
-    );
     //this.Cancel(); - clear the fields - TODO
-
-  }
 }

@@ -20,6 +20,8 @@ namespace ProjectManager.Persistence
             :base("name=PMContext")
         { }
         public virtual DbSet<User> users { get; set; }
+        public virtual DbSet<Project> projects { get; set; }
+        public virtual DbSet<Task> tasks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<ProjectManagerContext>(null);

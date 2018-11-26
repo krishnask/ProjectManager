@@ -8,21 +8,21 @@
   <form class ="form-horizontal flex">
     <div class="form-group row">
       <label class ="control-label col-sm-2" for="fname">First Name:</label>
-      <input type="text" class="form-control col-sm-10" id="fname" required  value ="{{user.FirstName}}" >
+      <input type="text" class="form-control col-sm-10" id="fname" name="fname" required  [(ngModel)] ="user.FirstName" >
     </div>
 
     <div class="form-group row">
       <label class ="control-label col-sm-2" for="lname">Last Name:</label>
-      <input type="text" class="form-control col-sm-10" id="lname" required value="{{user.LastName}}" >
+      <input type="text" class="form-control col-sm-10" id="lname" name="lname" required [(ngModel)]="user.LastName" >
     </div>
 
     <div class="form-group row">
       <label class ="control-label col-sm-2"  for="eid">Employee ID:</label>
-      <input type="text" class="form-control col-sm-5" id="eid" required value="{{user.EmployeeId}}" >
+      <input type="text" class="form-control col-sm-5" id="eid" name="eid" required [(ngModel)]="user.EmployeeId" >
     </div>
     <div class="form-group float-sm-right">
-      <button type="submit" class="btn btn-submit m-2" (click)='AddUpdate()' >Add</button>
-      <button type="reset" class="btn btn-warning  m-2">Reset</button>
+      <button type="submit" class="btn btn-info m-2" (click)='AddUpdateUser()' >{{buttoncaption}}</button>
+      <button type="reset" class="btn btn-warning  m-2" (click)='Reset()'>Reset</button>
     </div>
   </form>
 </div>
@@ -39,19 +39,18 @@
        <button class="btn btn-outline-info col-sm-3">First Name</button>
        <button class="btn btn-outline-info col-sm-3">Last Name</button>
        <button class="btn btn-outline-info col-sm-1">Id</button>
-       
        </div>
-       "
-       <div *ngFor = "let user of users">
+       
+       <div *ngFor = "let user of users | orderBy: 'LastName'">
        <hr style="border-top:dotted 1px; color:black">
        <div class="row">
           <label class ="greylabel col-sm-8" id="lfname">{{user.FirstName}}</label>
-          <div class="btn btn-info align-self-end ml-auto col-sm-2" >Edit</div>
+          <div class="btn btn-info align-self-end ml-auto col-sm-2"  (click)="EditUser(user.EmployeeId)" >Edit</div>
           </div>
           <br>
           <div class="row">  
           <label class ="col-sm-8 greylabel" id="lnname">{{user.LastName}}</label>
-          <div class="btn btn-warning align-self-end ml-auto col-sm-2" >Delete</div>
+          <div class="btn btn-warning align-self-end ml-auto col-sm-2" (click)="DeleteUser(user.EmployeeId)"  >Delete</div>
         </div>
         <br>
         <div class="row">
