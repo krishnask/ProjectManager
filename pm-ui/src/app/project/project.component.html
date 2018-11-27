@@ -1,0 +1,30 @@
+<p>
+  project works!
+</p>
+<div class="container">
+  <div *ngIf="submitErr" class ="alert alert-danger">
+      {{submitErr}}
+  </div>
+<form class ="form-horizontal flex">
+  <div class="form-group row">
+    <label class ="control-label col-sm-2" for="fname">Project:</label>
+    <input type="text" class="form-control col-sm-10" id="pname" name="pname" required  [(ngModel)] ="project.ProjectName" >
+  </div>
+
+  <div class="form-group row">
+       <input type="checkbox" class="form-control col-sm-10" id="setdate" name="setdate" [(ngModel)]="setDate" >
+       <input type="date" class="form-control col-sm-10" id="sdate" name="sdate" placeholder="Start Date" [(ngModel)]="project.StartDate" >
+       <input type="date" class="form-control col-sm-10" id="edate" name="edate" placeholder="End Date" [(ngModel)]="project.EndDate" >
+  </div>
+
+  <div class="form-group row">
+    <label class ="control-label col-sm-2"  for="eid">Employee ID:</label>
+    <input type="text" class="form-control col-sm-5" id="eid" name="eid" required [(ngModel)]="project.EmployeeId" >
+  </div>
+  <div class="form-group float-sm-right">
+    <button type="submit" class="btn btn-info m-2" (click)='AddUpdateUser()' >{{buttoncaption}}</button>
+    <button type="reset" class="btn btn-warning  m-2" (click)='Reset()'>Reset</button>
+  </div>
+</form>
+</div>
+<br><br>

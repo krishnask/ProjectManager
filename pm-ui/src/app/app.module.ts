@@ -7,11 +7,13 @@ import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {OrderModule} from 'ngx-order-pipe';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {UserComponent} from './user/user.component';
 import {AppComponent} from './app.component';
+import {ProjectComponent} from './project/project.component';
 
 const routes: Routes = [
- // {path: 'addproject', component: ProjectComponent  },
+  {path: 'project', component: ProjectComponent  },
  // {path: 'addtask', component: AddTaskComponent  },
   {path: 'user', component: UserComponent},
  // {path: 'viewtask', component: ViewTaskComponent}
