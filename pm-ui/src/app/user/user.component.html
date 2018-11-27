@@ -1,6 +1,5 @@
-<p>
-  user works!
-</p>
+<br>
+
 <div class="container">
     <div *ngIf="submitErr" class ="alert alert-danger">
         {{submitErr}}
@@ -21,24 +20,24 @@
       <input type="text" class="form-control col-sm-5" id="eid" name="eid" required [(ngModel)]="user.EmployeeId" >
     </div>
     <div class="form-group float-sm-right">
-      <button type="submit" class="btn btn-info m-2" (click)='AddUpdateUser()' >{{buttoncaption}}</button>
-      <button type="reset" class="btn btn-warning  m-2" (click)='Reset()'>Reset</button>
+      <button type="submit" class="btn btn-info defaultbutton m-2" (click)='AddUpdateUser()' >{{buttoncaption}}</button>
+      <button type="reset" class="btn btn-warning defaultbutton m-2" flex="25" (click)='Reset()'>Reset</button>
     </div>
   </form>
 </div>
 <br><br>
 <div>
-  <hr>
+  <hr class="mainseparator">
 </div>
 
 <div class="container">
     <form class ="form-horizontal">
         <div class="row">
-       <input type="text" class="form-control col-sm-4" id="lsearch" placeholder="Search..." >
-       <div>Sort:</div>
-       <button class="btn btn-outline-info col-sm-3">First Name</button>
-       <button class="btn btn-outline-info col-sm-3">Last Name</button>
-       <button class="btn btn-outline-info col-sm-1">Id</button>
+       <input type="text" class="form-control col-sm-3 m-2" id="lsearch" placeholder="Search..." >
+       <label class=" cenallign m-2">Sort:</label>
+       <button class="btn btn-outline-info col-sm-3 m-2">First Name</button>
+       <button class="btn btn-outline-info col-sm-3 m-2">Last Name</button>
+       <button class="btn btn-outline-info col-sm-1 m-2 ">Id</button>
        </div>
        
        <div *ngFor = "let user of users | orderBy: 'LastName'">

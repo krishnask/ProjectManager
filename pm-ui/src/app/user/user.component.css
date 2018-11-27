@@ -18,3 +18,14 @@ input{
     justify-content: center;
     align-items: center;
 }
+.defaultbutton{
+    width:200px;
+}
+.mainseparator{
+    display:block;
+    border-color:blue;
+    width: 100%;
+}
+.cenallign{
+    vertical-align: bottom;
+}
