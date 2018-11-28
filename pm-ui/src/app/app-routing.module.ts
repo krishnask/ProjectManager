@@ -4,10 +4,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {UserComponent} from './user/user.component';
 import {AppComponent} from './app.component';
 import {ProjectComponent} from './project/project.component';
+import {AddTaskComponent} from './add-task/add-task.component';
 
 const routes: Routes = [
   {path: 'project', component: ProjectComponent  },
- // {path: 'addtask', component: AddTaskComponent  },
+  {path: 'addtask', component: AddTaskComponent  },
   {path: 'user', component: UserComponent},
  // {path: 'viewtask', component: ViewTaskComponent}
   //{path: '', component: AppComponent}

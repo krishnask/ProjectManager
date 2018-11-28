@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {OrderModule} from 'ngx-order-pipe';
 import { ProjectComponent } from './project/project.component';
+import {AddTaskComponent} from './add-task/add-task.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    ProjectComponent
+    ProjectComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
