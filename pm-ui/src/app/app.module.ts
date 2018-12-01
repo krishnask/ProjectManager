@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {OrderModule} from 'ngx-order-pipe';
 import { ProjectComponent } from './project/project.component';
 import {AddTaskComponent} from './add-task/add-task.component'
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AddTaskComponent} from './add-task/add-task.component'
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OrderModule
+    OrderModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

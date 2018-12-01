@@ -14,6 +14,10 @@ export class UserService {
   constructor(private http:HttpClient) { }
   taskUrl: string = 'assets/tasks.json';
 
+  private refreshData()
+  {
+    this.getUsers();
+  }
   public getUsers()
   {
     console.log("Get Users");
@@ -26,24 +30,25 @@ export class UserService {
      
       ), catchError(this.handleError));
   }
-  public getUser(EmployeeId:number):Observable<User>
+  public getUser(UserId:number):Observable<User>
   {
     return this.getUsers().pipe(
-      map(tasks => tasks.find(user => user.EmployeeId === EmployeeId))
+      map(tasks => tasks.find(user => user.UserId === UserId))
     );
   }
  public Save(user:User)
  {
    console.log("Save");
-   if(user.EmployeeId)
+   if(user.UserId)
    {
      console.log("put");
-      return this.Put(user);
+      this.Put(user);
    }
    else{
     console.log("post");
-     return this.Post(user);
+     this.Post(user);
    }
+   return this.getUsers();
  }
  public Put(user:User)
  {
@@ -54,7 +59,7 @@ export class UserService {
  };
 
  var body = JSON.stringify(user);
- const url = `${environment.userUrl}/${user.EmployeeId}`;
+ const url = `${environment.userUrl}/${user.UserId}`;
 console.log(url);
 console.log(body);
   return this.http

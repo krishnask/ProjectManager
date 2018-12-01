@@ -33,29 +33,30 @@
 <div class="container">
     <form class ="form-horizontal">
         <div class="row">
-       <input type="text" class="form-control col-sm-3 m-2" id="lsearch" placeholder="Search..." >
+       <input type="text" class="form-control col-sm-3 m-2" id="lsearch" name="term" placeholder="Search..." [(ngModel)] = "term" >
        <label class=" cenallign m-2">Sort:</label>
-       <button class="btn btn-outline-info col-sm-3 m-2">First Name</button>
-       <button class="btn btn-outline-info col-sm-3 m-2">Last Name</button>
-       <button class="btn btn-outline-info col-sm-1 m-2 ">Id</button>
+       <button class="btn btn-outline-info col-sm-3 m-2" (click) ="SortByFirstName()" >First Name</button>
+       <button class="btn btn-outline-info col-sm-3 m-2" (click) ="SortByLastName()">Last Name</button>
+       <button class="btn btn-outline-info col-sm-1 m-2" (click) ="SortById()" >Id</button>
        </div>
        
-       <div *ngFor = "let user of users | orderBy: 'LastName'">
+       <div *ngFor = "let usr of users | filter: term">
        <hr style="border-top:dotted 1px; color:black">
        <div class="row">
-          <label class ="greylabel col-sm-8" id="lfname">{{user.FirstName}}</label>
-          <div class="btn btn-info align-self-end ml-auto col-sm-2"  (click)="EditUser(user.EmployeeId)" >Edit</div>
+          <label class ="greylabel col-sm-8" id="lfname">{{usr.FirstName}}</label>
+          <div class="btn btn-info align-self-end ml-auto col-sm-2"  (click)="EditUser(usr.UserId)" >Edit</div>
           </div>
           <br>
           <div class="row">  
-          <label class ="col-sm-8 greylabel" id="lnname">{{user.LastName}}</label>
-          <div class="btn btn-warning align-self-end ml-auto col-sm-2" (click)="DeleteUser(user.EmployeeId)"  >Delete</div>
+          <label class ="col-sm-8 greylabel" id="lnname">{{usr.LastName}}</label>
+          <div class="btn btn-warning align-self-end ml-auto col-sm-2" (click)="DeleteUser(usr.UserId)">Delete</div>
         </div>
         <br>
         <div class="row">
-          <label class ="col-sm-8 greylabel" id="lid">{{user.EmployeeId}}</label>
+          <label class ="col-sm-8 greylabel" id="lid">{{usr.EmployeeId}}</label>
         </div>
       </div>
       </form>
+      <hr style="border-top:dotted 1px; color:black">
 </div>
 

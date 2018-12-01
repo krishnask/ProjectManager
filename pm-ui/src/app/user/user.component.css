@@ -12,11 +12,11 @@ input{
     background-color:rgb(238, 234, 234);
     margin-right: 5px;
     
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
 }
 .defaultbutton{
     width:200px;

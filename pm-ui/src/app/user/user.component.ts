@@ -16,14 +16,14 @@ export class UserComponent implements OnInit {
   public users:User[];
   public submitErr:string;
   public buttoncaption:string
-  public sortby:string;
+  public sortBy:string;
+  public term:string;
 
   ngOnInit() {
     this.buttoncaption = "Add";
     this.userService.getUsers().subscribe(userlist => {
       this.users = userlist;
        console.log(this.users);
-      //this.users[0]=this.user;
      })
 
 
@@ -36,17 +36,19 @@ export class UserComponent implements OnInit {
   }
 SortById()
 {
-  this.sortby = "EmployeeId";
+  this.sortBy = "EmployeeId";
+  console.log(this.sortBy);
 }
 SortByFirstName()
 {
-  this.sortby = "FirstName";
+  this.sortBy = "FirstName";
 }
 SortByLastName()
 {
-  this.sortby = "LastName";
+  this.sortBy = "LastName";
 }
   AddUpdateUser() {
+    console.log (this.user);
     console.log("Add");
     if(this.buttoncaption == "Add")
     {
@@ -69,9 +71,13 @@ SortByLastName()
     this.buttoncaption = "Add";
   }
 
-  EditUser(EmployeeId:number) {
+  EditUser(userId:number) {
     console.log("Edit");
-    this.user = this.users.filter(u => u.EmployeeId == EmployeeId)[0];
+    this.user = Object.create(this.users.filter(u => u.UserId == userId)[0]);
+    this.user = this.users.filter(u => u.UserId == userId)[0];
+    console.log("Before Editing");
+    console.log(this.user);
+    console.log("Before actual edit");
     this.buttoncaption = "Update";
     }
     

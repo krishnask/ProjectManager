@@ -55,13 +55,14 @@ namespace ProjectManager.Business
             var data = _context.users.ToList<User>();
             return data;
         }
-        public bool UpdateUser(int empId, User user)
+        public bool UpdateUser(int userId, User user)
         {
-            var entity = _context.users.Find(empId);
+            var entity = _context.users.Find(userId);
             if (entity == null)
             {
                 return false;
             }
+            //user.UserId = null;
 
             _context.Entry(entity).CurrentValues.SetValues(user);
             _context.SaveChanges();
