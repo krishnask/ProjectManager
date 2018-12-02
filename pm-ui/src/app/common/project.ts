@@ -2,7 +2,7 @@ export class Project {
     ProjectId:number;
     ProjectName:string;
     StartDate:string;
-    EndDate:number;
+    EndDate:string;
     Priority:number;
     ManagerId:number;
 }

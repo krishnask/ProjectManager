@@ -4,14 +4,17 @@
     <div *ngIf="submitErr" class="alert alert-danger">
       {{submitErr}}
     </div>
-    <form class="form-horizontal flex">
+    
+    <form class="form-horizontal">
       <div class="form-group row">
-        <label class="control-label col-sm-2 m-2" for="pname">Project :</label>
-        <input type="text" class="form-control col-sm-9 m-2 float-sm-right" id="pname" name="pname" required [(ngModel)]="project.ProjectName">
+        <label class="control-label col-sm-2" for="pname">Project :</label>
+        <input type="text" class="form-control col-sm-10 " id="pname" name="pname" required [(ngModel)]="project.ProjectName">
       </div>
       <div class="form-group row">
         <label class="control-label col-sm-2 m-2"></label>
-        <input type="checkbox" class="checkbox cenallign m-2" id="setdate" name="setdate" [(ngModel)]="setDate">
+        <div class="m-2">
+        <input type="checkbox" id="setdate" name="setdate" [(ngModel)]="setDate">
+      </div>
         <p class="cenallign col-sm-3 m-2">Set Start and End Date</p>
         <input type="date" class="form-control col-sm-3 m-2" id="sdate" name="sdate" placeholder="Start Date" [(ngModel)]="project.StartDate">
         <input type="date" class="form-control col-sm-3 m-2 float-sm-right" id="edate" name="edate" placeholder="End Date" [(ngModel)]="project.EndDate">
@@ -24,7 +27,7 @@
           <!-- <input type="text" class="form-control" id="Priority" name="Priority"> -->
           <label for="Priority" class="labelnomargin">0</label>
           <label for="Priority" class="float-right labelnomargin">30</label>
-          <input type="range" class="form-control slider" id="Priority" name="Priority" min="0" max="30" [(ngModel)]="task.Priority">
+          <input type="range" class="form-control slider" id="Priority" name="Priority" min="0" max="30" [(ngModel)]="project.Priority">
         </div>
       </div>
 
@@ -34,7 +37,7 @@
         <button type="input" class="btn col-sm-1 m-2" (click)='SearchUser()'>Search</button>
       </div>
       <div class="form-group float-sm-right">
-        <button type="submit" class="btn btn-info defaultbutton m-2" (click)='AddUpdateUser()'>Add</button>
+        <button type="submit" class="btn btn-info defaultbutton m-2" (click)='AddUpdateProject()'>Add</button>
         <button type="reset" class="btn btn-warning defaultbutton m-2" (click)='Reset()'>Reset</button>
       </div>
     </form>

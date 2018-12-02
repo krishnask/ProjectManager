@@ -29,28 +29,38 @@ export class ProjectComponent implements OnInit {
 
 
     this.project = new Project();
-  /*  this.project.FirstName = "Krishnakumar";
-    this.project.LastName = "Srinivasan";
-    this.project.ProjectId = 263775;*/
+    this.project.ProjectName = "CMI";
+    this.project.Priority = 25;
+    this.project.ManagerId = 263775;
+    this.project.StartDate = new Date().toISOString().substring(0,10);
+    var curDate = new Date();
+    curDate.setDate(curDate.getDate()+1);
+    this.project.EndDate = curDate.toISOString().substring(0,10);
     console.log("Read from database");
     console.log(this.projects);
   }
-SortById()
+SortByStartDate()
 {
-  this.sortby = "ProjectId";
+  this.sortby = "StartDate";
 }
-SortByFirstName()
+SortByEndDate()
 {
-  this.sortby = "FirstName";
+  this.sortby = "EndDate";
 }
-SortByLastName()
+SortByPriority()
 {
-  this.sortby = "LastName";
+  this.sortby = "Priority";
+}
+SortByCompleted()
+{
+  this.sortby = "Completed";
 }
   AddUpdateProject() {
     console.log("Add");
+    console.log(this.project);
     if(this.buttoncaption == "Add")
     {
+
       this.projectService.Post(this.project).subscribe(response => console.log(response), err => {
         this.submitErr =err.ExceptionMessage;
         console.log(this.submitErr);
