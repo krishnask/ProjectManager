@@ -24,7 +24,7 @@ this.Cancel();
 
   Cancel() {
     
-    if(this.navigated =true)
+    /*if(this.navigated =true)
     {
       const url = '../../view';
       this.router.navigate([url]);
@@ -32,7 +32,7 @@ this.Cancel();
     else{
       const url = '../view';
       this.router.navigate([url]);
-    }   
+    }   */
   }
   constructor(   private taskService: TaskService,
     private route: ActivatedRoute, private router : Router) {

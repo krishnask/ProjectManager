@@ -5,4 +5,6 @@ export class Project {
     EndDate:string;
     Priority:number;
     ManagerId:number;
+    NumTasks:number;
+    IsSuspended:boolean;
 }

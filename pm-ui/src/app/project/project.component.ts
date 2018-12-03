@@ -23,7 +23,9 @@ export class ProjectComponent implements OnInit {
     this.buttoncaption = "Add";
     this.projectService.getProjects().subscribe(projectlist => {
       this.projects = projectlist;
+      console.log ("Project list in inginit of project component")
        console.log(this.projects);
+       console.log ("done dumping")
       //this.projects[0]=this.project;
      })
 
@@ -53,7 +55,7 @@ SortByPriority()
 }
 SortByCompleted()
 {
-  this.sortby = "Completed";
+  this.sortby = "IsSuspended";
 }
   AddUpdateProject() {
     console.log("Add");

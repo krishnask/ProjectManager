@@ -15,8 +15,8 @@ namespace ProjectManager.Persistence
 
             if (_context == null)
                 _context = new ProjectManagerContext();
-            //            _context.Database.Delete(); - uncomment to clean database
-            //_context.Database.Create(); - uncomment to clean
+           // _context.Database.Delete();// - uncomment to clean database
+            //_context.Database.Create(); //- uncomment to clean
             
             return _context;
         }

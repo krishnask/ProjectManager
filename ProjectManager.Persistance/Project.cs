@@ -23,5 +23,7 @@ namespace ProjectManager.Persistence
         public int Priority { get; set; }
 
         public int ManagerId { get; set; }
+
+        public bool IsSuspended { get; set; }
     }
 }

@@ -36,6 +36,19 @@
     transition: opacity .2s;
 
 }
+.greyback {
+    background: rgb(238, 234, 234);
+}
+.greylabel {
+    background-color:rgb(238, 234, 234);
+    margin-right: 5px;
+    
+    text-align: left;
+    vertical-align: middle;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
