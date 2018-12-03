@@ -8,4 +8,5 @@ export class Task {
     StartDate:string;
     EndDate:string;
     UserId:number;
+    IsCompleted:boolean;
 }

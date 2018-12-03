@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ITask } from '../Shared/ITask';
-import { TasksDalService } from '../tasks-dal.service';
-import{ITaskFilter} from '../Shared/ITaskFilter';
-import { TaskSearchService } from '../task-search.service';
 import {Router} from "@angular/router";
 import {DatePipe} from '@angular/common';
+
+import {Task} from '../common/task';
+import {TaskService} from '../task.service';
 
 @Component({
   selector: 'app-view-task',
@@ -13,15 +12,14 @@ import {DatePipe} from '@angular/common';
 })
 export class ViewTaskComponent implements OnInit {
 
-  constructor(private dal:TasksDalService , private tf:TaskSearchService, private router: Router) { }
+  constructor(private dal:TaskService , private router: Router) { }
   //Delete me ASAP
-public tasks:ITask[];
-public taskFilter:ITaskFilter;
+public tasks:Task[];
 public EditTask(TaskId:number):void{
   const link = '../edit/'+ TaskId;
   this.router.navigate([link]);
 }
-public EndTask(task:ITask):void{
+public EndTask(task:Task):void{
   console.log("EndTask");
   console.log(task);
   task.IsCompleted = true;
@@ -35,7 +33,6 @@ public EndTask(task:ITask):void{
          this.tasks = task;
         }
         );
-        this.taskFilter = this.tf.taskFilter;
   }
  
 }

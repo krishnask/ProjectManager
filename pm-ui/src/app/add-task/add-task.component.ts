@@ -54,6 +54,15 @@ this.Cancel();
         this.buttonCaption = "Add";
       }
     });
+    this.task = new Task();
+    this.task.TaskName = "My First Task";
+    this.task.ProjectId = 28;
+    this.task.UserId = 263775;
+    this.task.ParentTask = 25;
+    this.task.Priority = 20;
+    this.task.StartDate = "26-10-2017";
+    this.task.EndDate = "10-10-2018";
+    this.task.IsParentTask = true;
   }
 
 
