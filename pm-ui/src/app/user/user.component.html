@@ -41,20 +41,20 @@
       <button class="btn btn-outline-info col-sm-1 m-2" (click)="SortById()">Id</button>
     </div>
 
-    <div *ngFor="let usr of users | filter: term">
+    <div *ngFor="let usr of users | filter: term | orderBy: sortBy">
       <hr style="border-top:dotted 1px; color:black">
       <div class="row">
         <label class="greylabel col-sm-8" id="lfname">{{usr.FirstName}}</label>
-        <div class="btn btn-info align-self-end ml-auto col-sm-2" (click)="EditUser(usr.UserId)">Edit</div>
+        <div class="btn btn-info align-self-end ml-auto col-sm-2" (click)="EditUser(usr.EmployeeId)">Edit</div>
       </div>
       <br>
       <div class="row">
         <label class="col-sm-8 greylabel" id="lnname">{{usr.LastName}}</label>
-        <div class="btn btn-warning align-self-end ml-auto col-sm-2" (click)="DeleteUser(usr.UserId)">Delete</div>
+        <div class="btn btn-warning align-self-end ml-auto col-sm-2" (click)="DeleteUser(usr.EmployeeId)">Delete</div>
       </div>
       <br>
       <div class="row">
-        <label class="col-sm-8 greylabel" id="lid">{{usr.EmployeeId}}</label>
+        <label class="col-sm-4 greylabel" id="lid">{{usr.EmployeeId}}</label>
       </div>
     </div>
   </form>

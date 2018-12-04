@@ -13,8 +13,8 @@ namespace ProjectManager.Persistence
     [Table("UserDetails")]
     public class User
     {
-        [Key]
-        public int UserId { get; set; }
+        [Key, Column(Order =1),]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
 
         public string FirstName { get; set; }

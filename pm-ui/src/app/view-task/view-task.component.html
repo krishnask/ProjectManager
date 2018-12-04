@@ -1,10 +1,19 @@
-  <app-search-task></app-search-task>
+<br>
+<div class="row container">
+    <label class=" cenallign m-2">Project:</label>
+  <input type="text" class="form-control col-sm-3 m-2" id="lsearch" name="term" placeholder="Search..." [(ngModel)]="term">
+  <label class=" cenallign m-2">Sort Task By:</label>
+  <button class="btn btn-outline-info m-2" (click)="SortByStartDate()">Start Date</button>
+  <button class="btn btn-outline-info  m-2" (click)="SortByEndDate()">End Date</button>
+  <button class="btn btn-outline-info  m-2" (click)="SortByPriority()">Priority</button>
+  <button class="btn btn-outline-info m-2" (click)="SortByCompleted()">Completed</button>
+</div>
   <br>
   <table class="table borderless">
-    <tbody  *ngFor="let task of tasks | searchFilter: taskFilter.TaskName:taskFilter.ParentTaskName:taskFilter.PriorityFrom:taskFilter.PriorityTo:taskFilter.StartDate:taskFilter.EndDate">
+    <tbody  *ngFor="let task of tasks | filter: term | orderBy : sortBy">
       <tr>
         <th scope="col" style="width:25%">Task</th>
-        <th scope="col"style="width:25%">ParentTaskName</th>
+        <th scope="col"style="width:25%">Parent</th>
         <th scope="col" style="width:10%">Priority</th>
         <th scope="col" style="width:10%">Start</th>
         <th scope="col" style="width:10%">End</th>
@@ -16,7 +25,7 @@
       <td>{{task.StartDate | date:'shortDate'}}</td>
       <td>{{task.EndDate | date:'shortDate'}}</td>
       <td><button style="width:100px"  (click)="EditTask(task.TaskId)">Edit</button></td>
-      <td><button style="width:100px" (click) ="EndTask(task)">End Task</button></td>
+      <td><button style="width:100px" (click) ="EndTask(task.TaskId)">End Task</button></td>
     </tr>
     </tbody>
   </table>

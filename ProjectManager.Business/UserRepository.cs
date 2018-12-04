@@ -26,10 +26,10 @@ namespace ProjectManager.Business
                 _context.SaveChanges();
                 return true;
             }
-            catch(DbUpdateException)
+            catch(DbUpdateException ex)
             // TODO - log the exception
             {
-                throw new Exception("User Already Exist.");
+                throw new Exception(ex.Message);
             }
             
         }
@@ -55,9 +55,9 @@ namespace ProjectManager.Business
             var data = _context.users.ToList<User>();
             return data;
         }
-        public bool UpdateUser(int userId, User user)
+        public bool UpdateUser(int empId, User user)
         {
-            var entity = _context.users.Find(userId);
+            var entity = _context.users.Find(empId);
             if (entity == null)
             {
                 return false;

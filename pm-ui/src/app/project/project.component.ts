@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from '../common/project';
 import {ProjectService} from '../project.service';
+import {User} from '../common/user';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-project',
@@ -10,7 +12,7 @@ import {ProjectService} from '../project.service';
 
 export class ProjectComponent implements OnInit {
 
-  constructor(private projectService: ProjectService) { 
+  constructor(private projectService: ProjectService, private userService: UserService) { 
    
   }
   public project: Project;
@@ -18,6 +20,7 @@ export class ProjectComponent implements OnInit {
   public submitErr:string;
   public buttoncaption:string
   public sortby:string;
+  public users: User[];
 
   ngOnInit() {
     this.buttoncaption = "Add";
@@ -57,6 +60,13 @@ SortByCompleted()
 {
   this.sortby = "IsSuspended";
 }
+Refresh()
+{
+  this.projectService.getProjects().subscribe(projectlist => {
+    this.projects = projectlist;
+     console.log(this.projects);
+   })
+}
   AddUpdateProject() {
     console.log("Add");
     console.log(this.project);
@@ -66,13 +76,13 @@ SortByCompleted()
       this.projectService.Post(this.project).subscribe(response => console.log(response), err => {
         this.submitErr =err.ExceptionMessage;
         console.log(this.submitErr);
-      });
+      },() => this.Refresh());
     }
     else{
       this.projectService.Put(this.project).subscribe(response => console.log(response), err => {
         this.submitErr =err.ExceptionMessage;
         console.log(this.submitErr);
-      });
+      },() => this.Refresh());
     }
    
     //this.Cancel(); - clear the fields - TODO
@@ -86,6 +96,14 @@ SortByCompleted()
     console.log("Edit");
     this.project = this.projects.filter(p => p.ProjectId == ProjectId)[0];
     this.buttoncaption = "Update";
+    }
+    SearchUser(){
+      this.userService.getUsers().subscribe(userlist => {
+        this.users = userlist;
+         console.log(this.users);
+         console.log ("done dumping")
+        //this.projects[0]=this.project;
+       })
     }
     
     //this.Cancel(); - clear the fields - TODO

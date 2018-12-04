@@ -10,13 +10,15 @@ import {OrderModule} from 'ngx-order-pipe';
 import { ProjectComponent } from './project/project.component';
 import {AddTaskComponent} from './add-task/add-task.component'
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {ViewTaskComponent} from './view-task/view-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     ProjectComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    ViewTaskComponent
   ],
   imports: [
     BrowserModule,

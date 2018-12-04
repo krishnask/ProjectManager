@@ -28,7 +28,7 @@ namespace ProjectManager.Business
                 _context.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             // TODO - log the exception
             {
                 throw new Exception("Project Already Exist.");

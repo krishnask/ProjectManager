@@ -55,26 +55,45 @@ SortByLastName()
       this.userService.Post(this.user).subscribe(response => console.log(response), err => {
         this.submitErr =err.ExceptionMessage;
         console.log(this.submitErr);
-      });
+
+        this.Refresh();
+      }, () => this.Refresh());
     }
     else{
       this.userService.Put(this.user).subscribe(response => console.log(response), err => {
         this.submitErr =err.ExceptionMessage;
         console.log(this.submitErr);
-      });
+        this.Refresh();
+       
+      }, () => this.Refresh());
     }
    
     //this.Cancel(); - clear the fields - TODO
   }
+  Refresh()
+  {
+    this.userService.getUsers().subscribe(userlist => {
+      this.users = userlist;
+       console.log(this.users);
+     })
+  }
+
   Reset()
   {
     this.buttoncaption = "Add";
   }
+  DeleteUser(employeeId:number)
+  {
+    this.userService.Delete(employeeId).subscribe(response => console.log(response), err => {
+      this.submitErr =err.ExceptionMessage;
+      console.log(this.submitErr);
+    }, () => this.Refresh());
+  }
 
-  EditUser(userId:number) {
+  EditUser(employeeId:number) {
     console.log("Edit");
-    this.user = Object.create(this.users.filter(u => u.UserId == userId)[0]);
-    this.user = this.users.filter(u => u.UserId == userId)[0];
+    this.user = Object.create(this.users.filter(u => u.EmployeeId == employeeId)[0]);
+    this.user = this.users.filter(u => u.EmployeeId == employeeId)[0];
     console.log("Before Editing");
     console.log(this.user);
     console.log("Before actual edit");

@@ -15,6 +15,7 @@ export class ViewTaskComponent implements OnInit {
   constructor(private dal:TaskService , private router: Router) { }
   //Delete me ASAP
 public tasks:Task[];
+public sortBy:string;
 public EditTask(TaskId:number):void{
   const link = '../edit/'+ TaskId;
   this.router.navigate([link]);
@@ -34,5 +35,21 @@ public EndTask(task:Task):void{
         }
         );
   }
+  SortByStartDate()
+  {
+    this.sortBy = "StartDate";
+  }
+  SortByEndDate()
+{
+  this.sortBy = "EndDate";
+}
+SortByPriority()
+{
+  this.sortBy = "Priority";
+}
+SortByCompleted()
+{
+  this.sortBy = "IsCompleted";
+}
  
 }
