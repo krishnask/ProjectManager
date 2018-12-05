@@ -45,11 +45,11 @@
     <div class="form-group row">
       <label class="control-label col-sm-2" for="StartDate">Start Date:</label>
       <div class="col-sm-4">
-        <input type="date" class="form-control" id="StartDate" name="StartDate" [ngModel] = "task.StartDate" >
+        <input type="date" class="form-control" id="StartDate" name="StartDate" [ngModel] = "task.StartDate | date: 'yyyy-MM-dd'" >
       </div>
        <label class="control-label col-sm-2" for="EndDate">End Date:</label>
       <div class="col-sm-4">
-        <input type="date" class="form-control" id="EndDate" name="EndDate" [ngModel] = "task.EndDate">
+        <input type="date" class="form-control" id="EndDate" name="EndDate" [ngModel] = "task.EndDate | date: 'yyyy-MM-dd'">
       </div>
     </div>
   </h4>

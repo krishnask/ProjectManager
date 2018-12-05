@@ -16,8 +16,8 @@
           <input type="checkbox" id="setDate" name="setDate" [(ngModel)]="setDate">
         </div>
         <p class="cenallign col-sm-3 m-2">Set Start and End Date</p>
-        <input type="date" class="form-control col-sm-3 m-2" id="sdate" name="sdate" placeholder="Start Date" [(ngModel)]="project.StartDate">
-        <input type="date" class="form-control col-sm-3 m-2 float-sm-right" id="edate" name="edate" placeholder="End Date" [(ngModel)]="project.EndDate">
+        <input type="date" class="form-control col-sm-3 m-2" id="sdate" name="sdate" placeholder="Start Date" [disabled] = "!setDate" [ngModel]="project.StartDate | date: 'yyyy-MM-dd'">
+        <input type="date" class="form-control col-sm-3 m-2 float-sm-right" id="edate" name="edate" placeholder="End Date" [disabled] = "!setDate" [ngModel]="project.EndDate | date: 'yyyy-MM-dd'">
       </div>
       <div class="form-group row">
         <label class="control-label col-sm-2" for="Priority">Priority:</label>
@@ -75,8 +75,8 @@
     </div>
     <br>
     <div class="row">
-      <label class="col-sm-6 " id="lstdate">Start Date: <b> {{pjt.StartDate}} </b></label>
-      <label class="col-sm-6 " id="lenddate">End Date: <b> {{pjt.EndDate}} </b></label>
+      <label class="col-sm-6 " id="lstdate">Start Date: <b> {{pjt.StartDate | date : 'shortDate'}} </b></label>
+      <label class="col-sm-6 " id="lenddate">End Date: <b> {{pjt.EndDate | date : 'shortDate'}} </b></label>
     </div>
   </div>
 

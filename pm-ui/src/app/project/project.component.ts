@@ -21,6 +21,7 @@ export class ProjectComponent implements OnInit {
   public buttoncaption:string
   public sortby:string;
   public users: User[];
+  public setDate:boolean;
 
   ngOnInit() {
     this.buttoncaption = "Add";

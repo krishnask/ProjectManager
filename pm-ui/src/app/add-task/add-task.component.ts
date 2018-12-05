@@ -47,7 +47,9 @@ this.Cancel();
         this.buttonCaption = "Update";
          this.taskService.getTask(id).subscribe(task => 
         {
+          console.log("Specific task id");
           this.task = task;
+          console.log(task);
         })
       } else {
         this.navigated = false;
@@ -60,8 +62,10 @@ this.Cancel();
     this.task.UserId = 263775;
     this.task.ParentTask = 25;
     this.task.Priority = 20;
-    this.task.StartDate = "26-10-2017";
-    this.task.EndDate = "10-10-2018";
+    this.task.StartDate = new Date().toISOString().substring(0,10);
+    var curDate = new Date();
+    curDate.setDate(curDate.getDate()+1);
+    this.task.EndDate = curDate.toISOString().substring(0,10);
     this.task.IsParentTask = true;
   }
 

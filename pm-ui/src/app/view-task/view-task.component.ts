@@ -18,6 +18,7 @@ public tasks:Task[];
 public sortBy:string;
 public EditTask(TaskId:number):void{
   const link = '../edit/'+ TaskId;
+  console.log(link);
   this.router.navigate([link]);
 }
 public EndTask(task:Task):void{

@@ -11,7 +11,8 @@ const routes: Routes = [
   {path: 'project', component: ProjectComponent  },
   {path: 'addtask', component: AddTaskComponent  },
   {path: 'user', component: UserComponent},
-  {path: 'viewtask', component: ViewTaskComponent}
+  {path: 'viewtask', component: ViewTaskComponent},
+  {path: 'edit/:id', component: AddTaskComponent  }
   //{path: '', component: AppComponent}
   ];
 
