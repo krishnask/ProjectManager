@@ -56,6 +56,13 @@ namespace ProjectManager.Business
             var data = _context.projects.ToList<Project>();
             return data;
         }
+        public int GetNumTasks(int projectId)
+        {
+            // Queryable task table for a particular project id
+            int numTask = _context.tasks.Where(t => t.ProjectId == projectId).Count();
+
+            return numTask;
+        }
         public bool UpdateProject(int projectId, Project project)
         {
             var entity = _context.projects.Find(projectId);

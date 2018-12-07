@@ -25,9 +25,10 @@ namespace ProjectManager.WebAPI.Controllers
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            int numTasks = _repository.GetNumTasks(id);
+            return Ok(numTasks);
         }
 
         // POST api/values

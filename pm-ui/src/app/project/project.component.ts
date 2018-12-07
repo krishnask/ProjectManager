@@ -3,6 +3,7 @@ import {Project} from '../common/project';
 import {ProjectService} from '../project.service';
 import {User} from '../common/user';
 import {UserService} from '../user.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-project',
@@ -12,7 +13,7 @@ import {UserService} from '../user.service';
 
 export class ProjectComponent implements OnInit {
 
-  constructor(private projectService: ProjectService, private userService: UserService) { 
+  constructor(private projectService: ProjectService, private userService: UserService, private modalService: NgxSmartModalService) { 
    
   }
   public project: Project;
@@ -22,7 +23,8 @@ export class ProjectComponent implements OnInit {
   public sortby:string;
   public users: User[];
   public setDate:boolean;
-
+  public selectedUsr:User;
+  public manager:User;
   ngOnInit() {
     this.buttoncaption = "Add";
     this.projectService.getProjects().subscribe(projectlist => {
@@ -99,13 +101,22 @@ Refresh()
     this.buttoncaption = "Update";
     }
     SearchUser(){
+      this.modalService.getModal('myModal').open();
       this.userService.getUsers().subscribe(userlist => {
         this.users = userlist;
          console.log(this.users);
-         console.log ("done dumping")
+         console.log ("*****************************88")
         //this.projects[0]=this.project;
        })
     }
-    
+    ListClick(event, newUsr){
+      console.log(newUsr);
+      this.selectedUsr=newUsr;
+    }
+    SelectUser(){
+      this.modalService.getModal('myModal').close();
+      this.project.ManagerId = this.selectedUsr.EmployeeId;
+    }
+   
     //this.Cancel(); - clear the fields - TODO
 }

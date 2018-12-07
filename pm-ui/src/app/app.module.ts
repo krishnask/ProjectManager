@@ -11,6 +11,7 @@ import { ProjectComponent } from './project/project.component';
 import {AddTaskComponent} from './add-task/add-task.component'
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {ViewTaskComponent} from './view-task/view-task.component';
+import {NgxSmartModalModule} from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ViewTaskComponent} from './view-task/view-task.component';
     FormsModule,
     HttpClientModule,
     OrderModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
