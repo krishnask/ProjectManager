@@ -24,7 +24,8 @@ export class ProjectComponent implements OnInit {
   public users: User[];
   public setDate:boolean;
   public selectedUsr:User;
-  public manager:User;
+  public managerDetails:string;
+
   ngOnInit() {
     this.buttoncaption = "Add";
     this.projectService.getProjects().subscribe(projectlist => {
@@ -96,7 +97,7 @@ Refresh()
   }
 
   EditProject(ProjectId:number) {
-    console.log("Edit");
+   // console.log("Edit");
     this.project = this.projects.filter(p => p.ProjectId == ProjectId)[0];
     this.buttoncaption = "Update";
     }
@@ -104,18 +105,21 @@ Refresh()
       this.modalService.getModal('myModal').open();
       this.userService.getUsers().subscribe(userlist => {
         this.users = userlist;
-         console.log(this.users);
-         console.log ("*****************************88")
+         //console.log(this.users);
+         //console.log ("*****************************88")
         //this.projects[0]=this.project;
        })
     }
     ListClick(event, newUsr){
-      console.log(newUsr);
+      //console.log(newUsr);
       this.selectedUsr=newUsr;
     }
     SelectUser(){
       this.modalService.getModal('myModal').close();
       this.project.ManagerId = this.selectedUsr.EmployeeId;
+      this.managerDetails = this.selectedUsr.EmployeeId.toString() + " - "+ this.selectedUsr.FirstName + " " + this.selectedUsr.LastName;
+      //console.log(this.managerDetails);
+
     }
    
     //this.Cancel(); - clear the fields - TODO

@@ -1,9 +1,15 @@
-import {Task } from "../common/Task"
+import { Task } from "../common/Task"
+import { User } from "../common/user"
+import { Project } from "../common/project"
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TaskService } from '../task.service';
 import { Route } from "../../../node_modules/@angular/compiler/src/core";
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { UserService } from '../user.service';
+import { ProjectService } from '../project.service'
+import { NgxSmartModalService } from 'ngx-smart-modal';
+
 
 @Component({
   selector: 'app-update-task',
@@ -15,15 +21,15 @@ export class AddTaskComponent implements OnInit {
   @Output() close = new EventEmitter();
   error: any;
   navigated = false; // true if navigated here
-  buttonCaption:string;
+  buttonCaption: string;
 
   AddUpdate() {
-this.taskService.Save(this.task).subscribe(response => console.log(response), err => console.log(err));
-this.Cancel();
+    this.taskService.Save(this.task).subscribe(response => console.log(response), err => console.log(err));
+    this.Cancel();
   }
 
   Cancel() {
-    
+
     /*if(this.navigated =true)
     {
       const url = '../../view';
@@ -34,10 +40,10 @@ this.Cancel();
       this.router.navigate([url]);
     }   */
   }
-  constructor(   private taskService: TaskService,
-    private route: ActivatedRoute, private router : Router) {
-      this.task = new Task();
-     }
+  constructor(private taskService: TaskService, private projectService: ProjectService, private userService: UserService,
+    private route: ActivatedRoute, private modalService: NgxSmartModalService, private router: Router) {
+    this.task = new Task();
+  }
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -45,8 +51,7 @@ this.Cancel();
         const id = +params['id'];
         this.navigated = true;
         this.buttonCaption = "Update";
-         this.taskService.getTask(id).subscribe(task => 
-        {
+        this.taskService.getTask(id).subscribe(task => {
           console.log("Specific task id");
           this.task = task;
           console.log(task);
@@ -62,12 +67,78 @@ this.Cancel();
     this.task.UserId = 263775;
     this.task.ParentTask = 25;
     this.task.Priority = 20;
-    this.task.StartDate = new Date().toISOString().substring(0,10);
+    this.task.StartDate = new Date().toISOString().substring(0, 10);
     var curDate = new Date();
-    curDate.setDate(curDate.getDate()+1);
-    this.task.EndDate = curDate.toISOString().substring(0,10);
+    curDate.setDate(curDate.getDate() + 1);
+    this.task.EndDate = curDate.toISOString().substring(0, 10);
     this.task.IsParentTask = true;
   }
 
+  // Variables for selection
+  users: User[];
+  projects: Project[];
+  parents: Task[];
+  selectedUsr: User;
+  selectedPar: Task;
+  selectedPjt: Project;
+  projectDetails: string;
+  parentDetails: string;
+  userDetails: string;
 
+
+  // end variables for selection
+
+  SearchProject() {
+    this.modalService.getModal('pjtModal').open();
+    this.projectService.getProjects().subscribe(projectlist => {
+      this.projects = projectlist;
+
+    })
+  }
+
+  ClickPjt(event, newPjt) {
+    //console.log(newUsr);
+    this.selectedPjt = newPjt;
+  }
+  SelectProject() {
+    this.modalService.getModal('pjtModal').close();
+    this.task.ProjectId = this.selectedPjt.ProjectId;
+    this.projectDetails = this.selectedPjt.ProjectId.toString() + " - " + this.selectedPjt.ProjectName;
+    //console.log(this.managerDetails);
+
+  }
+
+
+  SearchParent() {
+    this.modalService.getModal('parModal').open();
+    this.taskService.getTasks().subscribe(tasklist => {
+      this.parents = tasklist.filter(task => task.IsParentTask)
+
+    })
+  }
+  ClickPar(event, newPar) {
+    //console.log(newUsr);
+    this.selectedPar = newPar;
+  }
+  SelectParent() {
+    this.modalService.getModal('parModal').close();
+    this.task.ParentTask = this.selectedPar.TaskId;
+    this.parentDetails = this.selectedPar.TaskId.toString() + " - " + this.selectedPar.TaskName;
+  }
+  SearchUser() {
+    this.modalService.getModal('usrModal').open();
+    this.userService.getUsers().subscribe(userlist => {
+      this.users = userlist;
+    })
+  }
+  ClickUsr(event, newUsr) {
+    this.selectedUsr = newUsr;
+  }
+  SelectUser() {
+    this.modalService.getModal('usrModal').close();
+    this.task.UserId = this.selectedUsr.EmployeeId;
+    this.userDetails = this.selectedUsr.EmployeeId.toString() + " - " + this.selectedUsr.FirstName + " " + this.selectedUsr.LastName;
+
+  }
 }
+

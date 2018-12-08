@@ -5,9 +5,9 @@
           <div class="form-group row">
             <label class="control-label col-sm-2" for="project">Project:</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="project" name="project" [(ngModel)] = "task.ProjectId" >
+              <input type="text" class="form-control" id="project" name="project" value= {{projectDetails}}>
             </div>
-            <button class="btn btn-outline-btn-default col-sm-2 float-right">Search</button>
+            <button class="btn btn-outline-btn-default col-sm-2 float-right" data-toggle = "modal" data-target = "#pjtModal"  (click)="SearchProject()">Search</button>
           </div>
         </h4>
     <h4>
@@ -38,9 +38,9 @@
     <div class="form-group row">
       <label class="control-label col-sm-2" for="ParentTaskName">Parent Task:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="ParentTaskName" name="ParentTaskName" [(ngModel)] = "task.ParentTaskName">
+        <input type="text" class="form-control" id="ParentTaskName" name="ParentTaskName" value ={{parentDetails}}>
       </div>
-      <button class="btn btn-default col-sm-2 float-right">Search</button>
+      <button class="btn btn-default col-sm-2 float-right" data-toggle = "modal" data-target = "#parModal"  (click)="SearchParent()">Search</button>
     </div>
     <div class="form-group row">
       <label class="control-label col-sm-2" for="StartDate">Start Date:</label>
@@ -57,9 +57,9 @@
   <div class="form-group row">
       <label class="control-label col-sm-2" for="user">User:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="user" name="user" [(ngModel)] = "task.UserId">
+        <input type="text" class="form-control" id="user" name="user" value={{userDetails}}>
       </div>
-      <button class="btn btn-default col-sm-2 float-right">Search</button>
+      <button class="btn btn-default col-sm-2 float-right" data-toggle = "modal" data-target = "#usrModal"  (click)="SearchUser()">Search</button>
     </div>
     <div class="form-group text-center float-sm-right col-sm-12">
         <button  class="btn btn-info col-sm-2 m-2 text-center myborder float-sm-right" (click)='AddUpdate()'>{{buttonCaption}}</button>
@@ -69,3 +69,34 @@
   </div>
 
 
+  <ngx-smart-modal #pjtModal identifier="pjtModal">
+    <h3>Select the Project</h3>
+    <ul id="grouplist" class="list-group">
+      <li class="list-group-item" [ngClass] = "{'active':selectedPjt ==pjt}" (click)="ClickPjt($event,pjt)"   *ngFor="let pjt of projects">{{pjt.ProjectId}} - {{pjt.ProjectName}}</li>
+    </ul>
+    <br>
+    <button (click)="SelectProject()">Select</button>
+  
+  </ngx-smart-modal>
+
+
+  <ngx-smart-modal #parModal identifier="parModal">
+    <h3>Select the Project Task</h3>
+    <ul id="grouplist" class="list-group">
+      <li class="list-group-item" [ngClass] = "{'active':selectedPar ==par}" (click)="ClickPar($event,par)"   *ngFor="let par of parents">{{par.TaskId}} - {{par.TaskName}}</li>
+    </ul>
+    <br>
+    <button (click)="SelectParent()">Select</button>
+  
+  </ngx-smart-modal>
+
+
+  <ngx-smart-modal #usrModal identifier="usrModal">
+    <h3>Select the Owner</h3>
+    <ul id="grouplist" class="list-group">
+      <li class="list-group-item" [ngClass] = "{'active':selectedUsr ==usr}" (click)="ClickUsr($event,usr)"   *ngFor="let usr of users">{{usr.EmployeeId}} - {{usr.FirstName}} {{usr.LastName}}</li>
+    </ul>
+    <br>
+    <button (click)="SelectUser()">Select</button>
+  
+  </ngx-smart-modal>
