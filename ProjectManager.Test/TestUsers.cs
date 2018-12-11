@@ -190,7 +190,7 @@ namespace ProjectManager.Tests
                 var cUser = userList[0];
                 cUser.FirstName = "Ram";
 
-                bool ret = service.UpdateUser(cUser.UserId, cUser);
+                bool ret = service.UpdateUser(cUser.EmployeeId, cUser);
 
             }
             catch (Exception ex)
@@ -231,7 +231,7 @@ namespace ProjectManager.Tests
                 var cUser = userList[0];
                 cUser.FirstName = "Ram";
 
-                bool ret = service.UpdateUser(cUser.UserId, cUser);
+                bool ret = service.UpdateUser(cUser.EmployeeId, cUser);
 
 
             }
