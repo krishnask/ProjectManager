@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewTaskComponent } from './view-task.component';
-import {SearchTaskComponent} from '../search-task/search-task.component';
-import {FilterPipe} from '../Shared/tasks.pipe';
 import{FormsModule} from '@angular/forms'
 import{HttpClientModule} from '@angular/common/http';
 import{RouterTestingModule} from '@angular/router/testing';
+import {OrderModule} from 'ngx-order-pipe';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxSmartModalModule} from 'ngx-smart-modal';
+
 
 
 describe('ViewTaskComponent', () => {
@@ -16,9 +18,9 @@ describe('ViewTaskComponent', () => {
     TestBed.configureTestingModule({
       imports:[FormsModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,  Ng2SearchPipeModule, NgxSmartModalModule,OrderModule
       ],
-      declarations: [ ViewTaskComponent, SearchTaskComponent, FilterPipe ]
+      declarations: [ ViewTaskComponent ]
     })
     .compileComponents();
   }));
