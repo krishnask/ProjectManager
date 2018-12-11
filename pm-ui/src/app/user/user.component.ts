@@ -23,16 +23,11 @@ export class UserComponent implements OnInit {
     this.buttoncaption = "Add";
     this.userService.getUsers().subscribe(userlist => {
       this.users = userlist;
-       console.log(this.users);
      })
 
 
     this.user = new User();
-    this.user.FirstName = "Krishnakumar";
-    this.user.LastName = "Srinivasan";
-    this.user.EmployeeId = 263775;
-    console.log("Read from database");
-    console.log(this.users);
+  
   }
 SortById()
 {
@@ -68,7 +63,6 @@ SortByLastName()
       }, () => this.Refresh());
     }
    
-    //this.Cancel(); - clear the fields - TODO
   }
   Refresh()
   {

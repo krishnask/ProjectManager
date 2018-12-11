@@ -18,12 +18,9 @@ public tasks:Task[];
 public sortBy:string;
 public EditTask(TaskId:number):void{
   const link = '../edit/'+ TaskId;
-  console.log(link);
   this.router.navigate([link]);
 }
 public EndTask(task:Task):void{
-  console.log("EndTask");
-  console.log(task);
   task.IsCompleted = true;
   
  this.dal.Save(task).subscribe(response => console.log(response), err => console.log(err));

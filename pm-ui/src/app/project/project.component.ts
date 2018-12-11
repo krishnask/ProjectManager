@@ -14,7 +14,11 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class ProjectComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private userService: UserService, private modalService: NgxSmartModalService) { 
-   
+    this.project = new Project();
+      this.project.StartDate = new Date().toISOString().substring(0, 10);
+      var curDate = new Date();
+      curDate.setDate(curDate.getDate() + 1);
+      this.project.EndDate = curDate.toISOString().substring(0, 10);
   }
   public project: Project;
   public projects:Project[];
@@ -30,23 +34,9 @@ export class ProjectComponent implements OnInit {
     this.buttoncaption = "Add";
     this.projectService.getProjects().subscribe(projectlist => {
       this.projects = projectlist;
-      console.log ("Project list in inginit of project component")
-       console.log(this.projects);
-       console.log ("done dumping")
-      //this.projects[0]=this.project;
+     
      })
-
-
-    this.project = new Project();
-    this.project.ProjectName = "CMI";
-    this.project.Priority = 25;
-    this.project.ManagerId = 263775;
-    this.project.StartDate = new Date().toISOString().substring(0,10);
-    var curDate = new Date();
-    curDate.setDate(curDate.getDate()+1);
-    this.project.EndDate = curDate.toISOString().substring(0,10);
-    console.log("Read from database");
-    console.log(this.projects);
+  
   }
 SortByStartDate()
 {
@@ -68,11 +58,9 @@ Refresh()
 {
   this.projectService.getProjects().subscribe(projectlist => {
     this.projects = projectlist;
-     console.log(this.projects);
    })
 }
   AddUpdateProject() {
-    console.log("Add");
     console.log(this.project);
     if(this.buttoncaption == "Add")
     {
@@ -89,7 +77,6 @@ Refresh()
       },() => this.Refresh());
     }
    
-    //this.Cancel(); - clear the fields - TODO
   }
   Reset()
   {
@@ -97,7 +84,6 @@ Refresh()
   }
 
   EditProject(ProjectId:number) {
-   // console.log("Edit");
     this.project = this.projects.filter(p => p.ProjectId == ProjectId)[0];
     this.buttoncaption = "Update";
     }
@@ -105,22 +91,27 @@ Refresh()
       this.modalService.getModal('myModal').open();
       this.userService.getUsers().subscribe(userlist => {
         this.users = userlist;
-         //console.log(this.users);
-         //console.log ("*****************************88")
-        //this.projects[0]=this.project;
+
        })
     }
     ListClick(event, newUsr){
-      //console.log(newUsr);
       this.selectedUsr=newUsr;
     }
     SelectUser(){
       this.modalService.getModal('myModal').close();
       this.project.ManagerId = this.selectedUsr.EmployeeId;
       this.managerDetails = this.selectedUsr.EmployeeId.toString() + " - "+ this.selectedUsr.FirstName + " " + this.selectedUsr.LastName;
-      //console.log(this.managerDetails);
+
+    }
+    SuspendProject(pjt:Project)
+    {
+      console.log(pjt);
+      pjt.IsSuspended = true;
+      this.projectService.Put(pjt).subscribe(response => console.log(response), err => {
+        this.submitErr =err.ExceptionMessage;
+        console.log(this.submitErr);
+      },() => this.Refresh());
 
     }
    
-    //this.Cancel(); - clear the fields - TODO
 }

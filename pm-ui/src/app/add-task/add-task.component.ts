@@ -52,9 +52,7 @@ export class AddTaskComponent implements OnInit {
         this.navigated = true;
         this.buttonCaption = "Update";
         this.taskService.getTask(id).subscribe(task => {
-          console.log("Specific task id");
           this.task = task;
-          console.log(task);
         })
       } else {
         this.navigated = false;
@@ -62,11 +60,7 @@ export class AddTaskComponent implements OnInit {
       }
     });
     this.task = new Task();
-    this.task.TaskName = "My First Task";
-    this.task.ProjectId = 28;
-    this.task.UserId = 263775;
-    this.task.ParentTask = 25;
-    this.task.Priority = 20;
+    this.task.Priority = 0;
     this.task.StartDate = new Date().toISOString().substring(0, 10);
     var curDate = new Date();
     curDate.setDate(curDate.getDate() + 1);
@@ -97,14 +91,12 @@ export class AddTaskComponent implements OnInit {
   }
 
   ClickPjt(event, newPjt) {
-    //console.log(newUsr);
     this.selectedPjt = newPjt;
   }
   SelectProject() {
     this.modalService.getModal('pjtModal').close();
     this.task.ProjectId = this.selectedPjt.ProjectId;
     this.projectDetails = this.selectedPjt.ProjectId.toString() + " - " + this.selectedPjt.ProjectName;
-    //console.log(this.managerDetails);
 
   }
 
@@ -117,7 +109,6 @@ export class AddTaskComponent implements OnInit {
     })
   }
   ClickPar(event, newPar) {
-    //console.log(newUsr);
     this.selectedPar = newPar;
   }
   SelectParent() {

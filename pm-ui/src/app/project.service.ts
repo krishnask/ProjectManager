@@ -16,11 +16,9 @@ export class ProjectService {
 
   public getProjects()
   {
-    console.log("Get Projects");
     return this.http.get<Project[]>(environment.projectUrl)
     .pipe(map(data => 
       {
-        console.log(data);
         return data;
       }
      
@@ -34,14 +32,11 @@ export class ProjectService {
   }
  public Save(project:Project)
  {
-   console.log("Save");
    if(project.ProjectId)
    {
-     console.log("put");
       return this.Put(project);
    }
    else{
-    console.log("post");
      return this.Post(project);
    }
  }
@@ -55,8 +50,6 @@ export class ProjectService {
 
  var body = JSON.stringify(project);
  const url = `${environment.projectUrl}/${project.ProjectId}`;
-console.log(url);
-console.log(body);
   return this.http
     .put(url, body, httpOptions)
     .pipe(catchError(this.handleError));

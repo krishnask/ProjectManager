@@ -16,11 +16,9 @@ export class TaskService {
 
   public getTasks()
   {
-    console.log("Get Tasks");
     return this.http.get<Task[]>(environment.taskUrl)
     .pipe(map(data => 
       {
-        console.log(data);
         return data;
       }
      
@@ -34,14 +32,11 @@ export class TaskService {
   }
  public Save(task:Task)
  {
-   console.log("Save");
    if(task.TaskId)
    {
-     console.log("put");
       return this.Put(task);
    }
    else{
-    console.log("post");
      return this.Post(task);
    }
  }
@@ -55,8 +50,6 @@ export class TaskService {
 
  var body = JSON.stringify(task);
  const url = `${environment.taskUrl}/${task.TaskId}`;
-console.log(url);
-console.log(body);
   return this.http
     .put(url, body, httpOptions)
     .pipe(catchError(this.handleError));

@@ -18,10 +18,8 @@ export class UserService {
     this.getUsers();
   }
   public getUsers() {
-    console.log("Get Users");
     return this.http.get<User[]>(environment.userUrl)
       .pipe(map(data => {
-        console.log(data);
         return data;
       }
 
@@ -33,13 +31,10 @@ export class UserService {
     );
   }
   public Save(user: User) {
-    console.log("Save");
     if (user.EmployeeId) {
-      console.log("put");
       this.Put(user);
     }
     else {
-      console.log("post");
       this.Post(user);
     }
     return this.getUsers();
@@ -53,8 +48,6 @@ export class UserService {
 
     var body = JSON.stringify(user);
     const url = `${environment.userUrl}/${user.EmployeeId}`;
-    console.log(url);
-    console.log(body);
     return this.http
       .put(url, body, httpOptions)
       .pipe(catchError(this.handleError));
@@ -69,7 +62,6 @@ export class UserService {
     };
 
     const url = `${environment.userUrl}/${employeeId}`;
-    console.log(url);
     return this.http
       .delete(url, httpOptions)
       .pipe(catchError(this.handleError));
@@ -83,7 +75,6 @@ export class UserService {
       })
     };
     var body = JSON.stringify(user);
-    console.log(body);
 
     return this.http
       .post(environment.userUrl, body, httpOptions)
