@@ -202,6 +202,7 @@ namespace ProjectManager.Tests
         }
 
         [Test]
+        [Ignore("Not Applicable")]
         public void TestEditCompletedProject() // TODO - remove this
         {
             try
