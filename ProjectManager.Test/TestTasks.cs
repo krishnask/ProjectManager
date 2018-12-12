@@ -205,49 +205,6 @@ namespace ProjectManager.Tests
         }
 
         [Test]
-        [Ignore("Not Applicable")]
-        public void TestEditCompletedTask() // TODO - remove this
-        {
-            try
-            {
-                var data = new List<ProjectManager.Persistence.Task>()
-                {
-                    new Persistence.Task{ProjectId=25, TaskName="Support Test Driven Development", IsParentTask=true, Priority=2, ParentTask=5, StartDate=new DateTime(2018,8,12), EndDate=DateTime.Now, UserId=20},
-                    new Persistence.Task{ProjectId=25, TaskName="Support Mobile Screens", IsParentTask=true, Priority=8, ParentTask=4, StartDate=new DateTime(2018,3,6), EndDate=DateTime.Now, UserId=14},
-
-                }.AsQueryable();
-
-                var mockSet = new Mock<DbSet<ProjectManager.Persistence.Task>>();
-                mockSet.As<IQueryable<ProjectManager.Persistence.Task>>().Setup(m => m.Provider).Returns(data.Provider);
-                mockSet.As<IQueryable<ProjectManager.Persistence.Task>>().Setup(m => m.Expression).Returns(data.Expression);
-                mockSet.As<IQueryable<ProjectManager.Persistence.Task>>().Setup(m => m.ElementType).Returns(data.ElementType);
-                mockSet.As<IQueryable<ProjectManager.Persistence.Task>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-                mockSet.As<IQueryable<ProjectManager.Persistence.Task>>().Setup(m => m.Provider).Returns(data.Provider);
-
-                var mockContext = new Mock<ProjectManagerContext>();
-
-                mockContext.Setup(m => m.tasks).Returns(mockSet.Object);
-
-                var service = new TaskRepository(mockContext.Object);
-                List<Task> TaskList = service.GetAllTasks();
-
-                Assert.That(TaskList.Count == 0);
-
-                var cTask = TaskList[0];
-                cTask.Priority = 6;
-
-                bool ret = service.UpdateTask(cTask.TaskId, cTask);
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Assert.That(1 == 1);
-            }
-
-        }
-        [Test]
         public void TestAddTask()
         {
             try

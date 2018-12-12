@@ -16,6 +16,7 @@ export class ViewTaskComponent implements OnInit {
   //Delete me ASAP
 public tasks:Task[];
 public sortBy:string;
+public term:string;
 public EditTask(TaskId:number):void{
   const link = '../edit/'+ TaskId;
   this.router.navigate([link]);

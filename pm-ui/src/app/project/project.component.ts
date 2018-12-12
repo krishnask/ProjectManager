@@ -29,6 +29,7 @@ export class ProjectComponent implements OnInit {
   public setDate:boolean;
   public selectedUsr:User;
   public managerDetails:string;
+  public term:string;
 
   ngOnInit() {
     this.buttoncaption = "Add";

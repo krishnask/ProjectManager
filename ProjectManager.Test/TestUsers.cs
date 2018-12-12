@@ -202,48 +202,6 @@ namespace ProjectManager.Tests
         }
 
         [Test]
-        [Ignore ("Not Applicable")]
-        public void TestEditCompletedUser() // TODO - remove this
-        {
-            try
-            {
-                var data = new List<ProjectManager.Persistence.User>()
-                {
-                     new Persistence.User{EmployeeId=25, FirstName="Krishna", LastName="Kumar"},
-                     new Persistence.User{EmployeeId=30, FirstName="John", LastName="Joseph"},
-                }.AsQueryable();
-
-                var mockSet = new Mock<DbSet<ProjectManager.Persistence.User>>();
-                mockSet.As<IQueryable<ProjectManager.Persistence.User>>().Setup(m => m.Provider).Returns(data.Provider);
-                mockSet.As<IQueryable<ProjectManager.Persistence.User>>().Setup(m => m.Expression).Returns(data.Expression);
-                mockSet.As<IQueryable<ProjectManager.Persistence.User>>().Setup(m => m.ElementType).Returns(data.ElementType);
-                mockSet.As<IQueryable<ProjectManager.Persistence.User>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-                mockSet.As<IQueryable<ProjectManager.Persistence.User>>().Setup(m => m.Provider).Returns(data.Provider);
-
-                var mockContext = new Mock<ProjectManagerContext>();
-
-                mockContext.Setup(m => m.users).Returns(mockSet.Object);
-
-                var service = new UserRepository(mockContext.Object);
-                List<User> userList = service.GetAllUsers();
-
-                Assert.That(userList.Count == 0);
-
-                var cUser = userList[0];
-                cUser.FirstName = "Ram";
-
-                bool ret = service.UpdateUser(cUser.EmployeeId, cUser);
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Assert.That(1 == 1);
-            }
-
-        }
-        [Test]
         public void TestAddUser()
         {
             try
